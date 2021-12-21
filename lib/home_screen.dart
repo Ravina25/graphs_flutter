@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graphs_flutter/barchart_graph.dart';
 import 'package:graphs_flutter/linechart_graph.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,7 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
               'Bar Chart',
               style: TextStyle(fontSize: 20.0),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => BarChartGraph()));
+            },
           ),
           FlatButton(
             child: Text(
