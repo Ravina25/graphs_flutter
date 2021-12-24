@@ -1,5 +1,5 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class BarChartGraph extends StatefulWidget {
   @override
@@ -7,53 +7,51 @@ class BarChartGraph extends StatefulWidget {
 }
 
 class _BarChartGraphState extends State<BarChartGraph> {
+  List<_ChartData> data;
+  TooltipBehavior _tooltip;
+
+  @override
+  void initState() {
+    data = [
+      _ChartData('CHN', 12),
+      _ChartData('GER', 15),
+      _ChartData('RUS', 30),
+      _ChartData('BRZ', 6.4),
+      _ChartData('IND', 14)
+    ];
+    _tooltip = TooltipBehavior(enable: true);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Bar Chart Graph"),
-      ),
-      body: Container(
-        color: Colors.white,
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height,
-        child: BarChart(BarChartData(
-            borderData: FlBorderData(
-                border: Border(
-              top: BorderSide.none,
-              right: BorderSide.none,
-              left: BorderSide(width: 1),
-              bottom: BorderSide(width: 1),
-            )),
-            groupsSpace: 10,
-            barGroups: [
-              BarChartGroupData(x: 1, barRods: [
-                BarChartRodData(y: 10, width: 15, colors: [Colors.amber]),
-              ]),
-              BarChartGroupData(x: 2, barRods: [
-                BarChartRodData(y: 9, width: 15, colors: [Colors.amber]),
-              ]),
-              BarChartGroupData(x: 3, barRods: [
-                BarChartRodData(y: 4, width: 15, colors: [Colors.amber]),
-              ]),
-              BarChartGroupData(x: 4, barRods: [
-                BarChartRodData(y: 2, width: 15, colors: [Colors.amber]),
-              ]),
-              BarChartGroupData(x: 5, barRods: [
-                BarChartRodData(y: 13, width: 15, colors: [Colors.amber]),
-              ]),
-              BarChartGroupData(x: 6, barRods: [
-                BarChartRodData(y: 17, width: 15, colors: [Colors.amber]),
-              ]),
-              BarChartGroupData(x: 7, barRods: [
-                BarChartRodData(y: 19, width: 15, colors: [Colors.amber]),
-              ]),
-              BarChartGroupData(x: 8, barRods: [
-                BarChartRodData(y: 21, width: 15, colors: [Colors.amber]),
-              ]),
-            ])),
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Bar Chart Graph"),
+        ),
+        body: SfCartesianChart(
+            primaryXAxis: CategoryAxis(),
+            primaryYAxis: NumericAxis(minimum: 0, maximum: 40, interval: 10),
+            tooltipBehavior: _tooltip,
+            series: <ChartSeries<_ChartData, String>>[
+              // Renders bar chart
+              BarSeries<_ChartData, String>(
+                  dataSource: data,
+                  isTrackVisible: false, // Renders the track
+                  xValueMapper: (_ChartData data, _) => data.x,
+                  yValueMapper: (_ChartData data, _) => data.y,
+                  width: 0.6, // Width of the bars
+                  spacing: 0.3, // Spacing between the bars
+                  name: 'Gold',
+                  color: Color.fromRGBO(8, 142, 255, 1),
+                  borderRadius: BorderRadius.all(Radius.circular(15)))
+            ]));
   }
+}
+
+class _ChartData {
+  _ChartData(this.x, this.y);
+
+  final String x;
+  final double y;
 }
