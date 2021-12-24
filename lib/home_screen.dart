@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphs_flutter/barchart_graph.dart';
 import 'package:graphs_flutter/linechart_graph.dart';
+import 'package:graphs_flutter/piechart_graph.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -23,7 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
               'Pie Chart',
               style: TextStyle(fontSize: 20.0),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => PieChartGraph()));
+            },
           ),
           FlatButton(
             child: Text(
