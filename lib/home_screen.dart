@@ -3,6 +3,7 @@ import 'package:graphs_flutter/barchart_graph.dart';
 import 'package:graphs_flutter/doughnutchart_graph.dart';
 import 'package:graphs_flutter/linechart_graph.dart';
 import 'package:graphs_flutter/piechart_graph.dart';
+import 'package:graphs_flutter/radialbar_chart_graph.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -62,10 +63,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           FlatButton(
             child: Text(
-              'Scatter Chart',
+              'Radial Bar Chart',
               style: TextStyle(fontSize: 20.0),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => RadialBarChartGraph()));
+            },
           ),
         ],
       ),
