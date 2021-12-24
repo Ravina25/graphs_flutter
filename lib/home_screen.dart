@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphs_flutter/barchart_graph.dart';
+import 'package:graphs_flutter/doughnutchart_graph.dart';
 import 'package:graphs_flutter/linechart_graph.dart';
 import 'package:graphs_flutter/piechart_graph.dart';
 
@@ -37,6 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => LineChartGraph()));
+            },
+          ),
+          FlatButton(
+            child: Text(
+              'Doughnut Chart',
+              style: TextStyle(fontSize: 20.0),
+            ),
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => DoughnutChartGraph()));
             },
           ),
           FlatButton(
